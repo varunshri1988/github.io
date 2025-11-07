@@ -13,17 +13,61 @@
   --fw-semibold: 600;
 }
 
-@keyframes fadeInUp {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@keyframes fadeInScale {from{opacity:0;transform:scale(0.95);}to{opacity:1;transform:scale(1);}}
-@keyframes slideInFromLeftBehind {from{opacity:0;transform:translateX(-30px);}to{opacity:1;transform:translateX(0);}}
-@keyframes fadeIn {from{opacity:0;}to{opacity:1;}}
-
-/* Universal anchor target fix for fixed header */
-.section {
-  scroll-margin-top: 74px; /* matches mobile/desktop .site-header or adjust as needed */
+/* Entrance Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Base Styles */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeftBehind {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Base */
 html, body {
   margin: 0;
   padding: 0;
@@ -47,7 +91,6 @@ html, body {
   z-index: 1000;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   transition: all 0.3s ease;
-  min-height: 74px;
 }
 
 .site-inner {
@@ -59,15 +102,16 @@ html, body {
   align-items: center;
 }
 
-.nav-logo {
+.nav-logo { 
   height: 42px;
   transition: transform 0.3s ease, filter 0.3s ease;
-  flex-shrink: 0;
 }
 
-.nav-logo:hover { transform: scale(1.05); filter: brightness(0.9); }
+.nav-logo:hover {
+  transform: scale(1.05);
+  filter: brightness(0.9);
+}
 
-.site-nav { display: flex; gap: 8px; }
 .site-nav a {
   color: #000;
   text-decoration: none;
@@ -76,9 +120,8 @@ html, body {
   transition: color 0.3s ease;
   position: relative;
   padding-bottom: 2px;
-  font-size: 15px;
-  white-space: nowrap;
 }
+
 .site-nav a::after {
   content: "";
   position: absolute;
@@ -89,175 +132,371 @@ html, body {
   background: var(--accent);
   transition: width 0.3s ease;
 }
-.site-nav a:hover::after { width: 100%; }
-.site-nav a.active { color: var(--accent);}
-.site-nav a.active::after {width: 100%;}
+
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--accent);
+}
+
+.site-nav a.active::after {
+  width: 100%;
+}
 
 /* Sections */
-.section { padding: 120px 20px 80px; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; }
-.section-inner { max-width: var(--max-w); width: 100%; }
+.section {
+  padding: 120px 20px 80px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-/* HOME PAGE */
+.section-inner {
+  max-width: var(--max-w);
+  width: 100%;
+}
+
+/* ========================================
+   HOME PAGE ANIMATIONS
+   ======================================== */
+
 .section-home {
   text-align: center;
   align-items: center;
-  padding-top: 90px;
+  padding-top: 80px;
   min-height: 100vh;
 }
-.hero-logo { max-width: 400px; width: 100%; margin-top: 0; transition: transform 0.3s ease, opacity 0.3s ease; animation: fadeInScale 0.7s cubic-bezier(0.4,0,0.2,1) 0.3s forwards; }
-.hero-logo:hover { transform: translateY(-4px) scale(1.02);}
-.company-name { font-size: var(--font-size-h1); font-weight: var(--fw-bold); margin: 15px 0 5px 0; transition: all 0.3s ease; cursor: pointer; animation: fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.5s forwards;}
-.company-name:hover { color: var(--accent); letter-spacing: 0.5px;}
-.company-tagline { font-size: var(--font-size-large); color: var(--muted); font-style: italic; margin-top:8px; transition: color 0.3s ease; animation: fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.7s forwards;}
 
-/* TEA PAGE */
-.section-tea { padding-top: 60px; }
-.tea-layout { display: grid; grid-template-columns: 40% 60%; gap: 40px; align-items: center; }
-.tea-left { position: relative; }
-.tea-pack-img { width: 70%; max-width: 420px; margin-top: 40px; transition: transform 0.3s ease, opacity 0.3s ease; animation: fadeInScale 0.7s cubic-bezier(0.4,0,0.2,1) 0.2s forwards;}
-.tea-pack-img:hover { transform: translateY(-4px) scale(1.02);}
-.tea-right { animation: slideInFromLeftBehind 0.9s cubic-bezier(0.4,0,0.2,1) 0.2s forwards;}
-.tea-right p { margin-bottom: 10px;}
-.tea-right h2 { transition: all 0.3s ease; cursor: pointer; position: relative; display: inline-block;}
-.tea-right h2::before { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease;}
-.tea-right h2:hover { color: var(--accent); transform: translateX(4px);}
-.tea-right h2:hover::before { width:100%;}
-.tea-right p:first-of-type strong { transition: all 0.3s ease; cursor:pointer;}
-.tea-right p:first-of-type strong:hover { color: var(--accent);}
-.tea-right .tagline { transition: opacity 0.3s ease; cursor:pointer; opacity:0.92;}
-.tea-right .tagline:hover { opacity:1; }
+.hero-logo {
+  max-width: 400px;
+  width: 100%;
+  margin-top: -20px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.98;
+  animation: fadeInScale 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
 
-/* ABOUT PAGE */
-.section-about { padding-top: 120px; }
-.about-layout { display: grid; grid-template-columns: 40% 60%; gap: 40px; align-items: center;}
-.about-left { position: relative;}
-.Mnrg-logo { width: 60%; max-width: 300px; transition: transform 0.3s ease, opacity 0.3s ease; animation: fadeInScale 0.7s cubic-bezier(0.4,0,0.2,1) 0.2s forwards;}
-.Mnrg-logo:hover { transform: scale(1.03);}
-.about-right { position: relative; top: -40px; animation: fadeIn 1s cubic-bezier(0.4,0,0.2,1) 0.3s forwards;}
-.about-right h2 { transition: all 0.3s ease; cursor:pointer; position:relative; display:inline-block;}
-.about-right h2::before{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s ease;}
-.about-right h2:hover { color: var(--accent); transform: translateX(4px);}
-.about-right h2:hover::before {width:100%;}
-.about-right p:first-of-type strong { transition: all 0.3s ease; cursor:pointer;}
-.about-right p:first-of-type strong:hover { color: var(--accent);}
-.about-right p:nth-of-type(2) strong { transition: all 0.3s ease; cursor:pointer; position:relative; display:inline-block;}
-.about-right p:nth-of-type(2) strong::before { content:"";position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s ease;}
-.about-right p:nth-of-type(2) strong:hover { color:var(--accent);}
-.about-right p:nth-of-type(2) strong:hover::before {width:100%;}
+.company-name {
+  font-size: var(--font-size-h1);
+  font-weight: var(--fw-bold);
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  opacity: 0;
+}
 
-/* SHOP PAGE */
-.section-shop { padding-top: 100px; text-align:center;}
-.section-shop .section-inner { margin-top:100px; }
+.company-name:hover {
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
 
-/* FAQ PAGE */
-.section-faq { padding-top: 70px; padding-bottom: 100px; position: relative; z-index: 10; overflow: visible; }
-.faq-content { position: relative; z-index: 10;}
-.faq-content h3 { transition: all 0.3s ease; cursor:pointer; position:relative; display:inline-block;}
-.faq-content h3:hover { color: var(--accent); transform: translateX(3px);}
-.q-highlight { color: var(--accent); font-weight: var(--fw-bold);}
-.faq-content p { margin-bottom: 12px; }
+.company-tagline {
+  font-size: var(--font-size-large);
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 5px;
+  transition: color 0.3s ease;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+  opacity: 0;
+}
 
-/* CONTACT PAGE */
+/* ========================================
+   TEA PAGE ANIMATIONS
+   ======================================== */
+
+.section-tea { 
+  padding-top: 60px;
+}
+
+.tea-layout { 
+  display: grid; 
+  grid-template-columns: 40% 60%; 
+  gap: 40px; 
+  align-items: center;
+}
+
+.tea-left {
+  position: relative;
+}
+
+.tea-pack-img { 
+  width: 70%; 
+  max-width: 420px; 
+  margin-top: 40px; 
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.97;
+  animation: fadeInScale 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.tea-pack-img:hover { 
+  transform: translateY(-4px) scale(1.02);
+  opacity: 1;
+}
+
+.tea-right {
+  animation: slideInFromLeftBehind 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+.tea-right p { 
+  margin-bottom: 10px;
+}
+
+.tea-right h2 {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.tea-right h2::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.tea-right h2:hover {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.tea-right h2:hover::before {
+  width: 100%;
+}
+
+.tea-right p:first-of-type strong {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tea-right p:first-of-type strong:hover {
+  color: var(--accent);
+}
+
+.tea-right .tagline {
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  opacity: 0.92;
+}
+
+.tea-right .tagline:hover {
+  opacity: 1;
+}
+
+/* ========================================
+   ABOUT PAGE ANIMATIONS
+   ======================================== */
+
+.section-about {
+  padding-top: 120px;
+}
+
+.about-layout { 
+  display: grid; 
+  grid-template-columns: 40% 60%; 
+  gap: 40px; 
+  align-items: center;
+}
+
+.about-left {
+  position: relative;
+}
+
+.Mnrg-logo { 
+  width: 60%; 
+  max-width: 300px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.98;
+  animation: fadeInScale 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.Mnrg-logo:hover { 
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+.about-right {
+  position: relative;
+  top: -40px;
+  animation: fadeIn 1.0s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.about-right h2 {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.about-right h2::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.about-right h2:hover {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.about-right h2:hover::before {
+  width: 100%;
+}
+
+.about-right p:first-of-type strong {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.about-right p:first-of-type strong:hover {
+  color: var(--accent);
+}
+
+.about-right p:nth-of-type(2) strong {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.about-right p:nth-of-type(2) strong::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.about-right p:nth-of-type(2) strong:hover {
+  color: var(--accent);
+}
+
+.about-right p:nth-of-type(2) strong:hover::before {
+  width: 100%;
+}
+
+/* ========================================
+   SHOP PAGE
+   ======================================== */
+
+.section-shop {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.section-shop .section-inner {
+  margin-top: 100px;
+}
+
+/* ========================================
+   FAQ PAGE
+   ======================================== */
+
+.section-faq { 
+  padding-top: 70px;
+}
+
+.faq-content h3 { 
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.faq-content h3:hover { 
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.q-highlight { 
+  color: var(--accent); 
+  font-weight: var(--fw-bold); 
+}
+
+/* ========================================
+   CONTACT PAGE
+   ======================================== */
+
 .section-contact {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 10;
+  padding-bottom: 10px;
   text-align: left;
   min-height: auto;
-  position: relative;
-  z-index: 5;
-  background: rgba(255,255,255,0.02);
-  margin-top: 60px;
-  border-top: 1px solid rgba(0,0,0,0.03);
 }
-.section-contact .section-inner { position:relative; top:0; max-width:var(--max-w); margin:0 auto; z-index:5;}
-.section-contact h2 { margin-bottom: 30px; margin-top: 0; }
-.section-contact p { margin: 8px 0; line-height: 1.7; }
-.section-contact a { color: var(--accent); text-decoration:none; transition:all 0.3s ease; position:relative; padding-bottom:1px;}
-.section-contact a::after {content:"";position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width 0.3s ease;}
-.section-contact a:hover {opacity:0.8;}
-.section-contact a:hover::after {width:100%;}
 
-/* FOOTER */
+.section-contact .section-inner {
+  position: relative;
+  top: -70px;
+}
+
+.section-contact a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 1px;
+}
+
+.section-contact a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.section-contact a:hover {
+  opacity: 0.8;
+}
+
+.section-contact a:hover::after {
+  width: 100%;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
 .site-footer {
   text-align: center;
-  padding: 30px 20px 15px;
+  padding: 10px 0 15px;
   color: var(--muted);
   font-size: var(--font-size-small);
-  margin-top: 40px;
-  border-top: 1px solid rgba(0,0,0,0.05);
-  background: rgba(0,0,0,0.01);
+  margin-top: 0;
 }
 
-/* Responsive: Tablet */
-@media (max-width: 768px) {
-  :root {
-    --font-size-base: 16px;
-    --font-size-h1: 36px;
-    --font-size-h2: 24px;
-    --font-size-large: 18px;
+/* Responsive */
+@media (max-width: 900px) {
+  .tea-layout, .about-layout { 
+    grid-template-columns: 1fr; 
+    text-align: center;
   }
-  .site-header { padding: 10px 15px; }
-  .nav-logo { height: 36px;}
-  .site-nav a { margin-left: 12px; font-size: 13px;}
-  .section { padding: 90px 16px 60px;}
-  .section-home { padding-top: 90px; }
-  .hero-logo { max-width: 300px;}
-  .tea-layout, .about-layout { grid-template-columns: 1fr; gap: 30px;}
-  .tea-left, .about-left { order: 2;}
-  .tea-right, .about-right { order: 1; top: 0;}
-  .tea-pack-img, .Mnrg-logo { width: 80%; max-width: 100%; margin: 0 auto;}
-  .about-right h2:hover, .tea-right h2:hover {transform: translateX(2px);}
-  .section-shop .section-inner {margin-top: 50px;}
-  .section-faq { padding-bottom: 80px;}
-  .section-contact {margin-top: 40px; padding-top: 30px; padding-bottom: 30px;}
-}
-
-/* Responsive: Mobile */
-@media (max-width: 480px) {
-  :root {
-    --font-size-base: 15px;
-    --font-size-h1: 28px;
-    --font-size-h2: 20px;
-    --font-size-large: 16px;
-    --font-size-small: 14px;
+  .section { 
+    padding: 100px 20px 60px;
   }
-  .site-header {padding: 8px 12px; min-height: auto;}
-  .site-inner {flex-direction: column; align-items: flex-start; padding: 8px 12px; gap: 4px;}
-  .nav-logo {height:32px;margin-bottom:0;}
-  .site-nav {width:100%;flex-wrap:wrap;display:flex;gap:4px;justify-content:flex-start;margin:0;}
-  .site-nav a {font-size:12px;margin-left:2px;padding-bottom:1px;}
-  .section {padding:60px 12px 20px; min-height:auto;}
-  .section-home {padding-top:74px;}
-  .hero-logo { max-width: 170px; margin-top: 0; margin-bottom: 10px; }
-  .company-name {margin: 8px 0; font-size: 22px;}
-  .company-tagline {font-size: 13px; margin-top: 4px;}
-  .tea-layout, .about-layout {gap: 20px;}
-  .tea-pack-img {width:82%;margin-top:10px;}
-  .about-left {margin-bottom:8px;}
-  .Mnrg-logo {width:65%;}
-  .about-right, .tea-right {top:0;}
-  .section-tea {padding-top:25px; padding-bottom:25px;}
-  .section-about {padding-top:35px;}
-  .section-shop {padding-top:40px;}
-  .section-shop .section-inner {margin-top:18px;}
-  .section-faq {padding-top:30px; padding-bottom:35px;}
-  .faq-content h3 {padding-left:0;}
-  .faq-content h3:hover {transform: translateX(2px);}
-  .section-contact {margin-top:16px;padding-top:10px;padding-bottom:10px;}
-  .section-contact h2 {margin-bottom:14px;}
-  .section-contact p {font-size:13px;line-height:1.6;margin:5px 0;}
-  .section-contact a {font-size:13px;}
-  .site-footer {padding:17px 10px 10px;font-size:11.5px;}
-}
-
-/* Anchor jump fix for all tiny screens */
-@media (max-width: 480px) {
-  .section {scroll-margin-top: 74px;}
-}
-
-/* Print styles */
-@media print {
-  .site-header, .site-footer, .section-shop, .section-contact { display: none;}
-  body { background: white;}
-  .section { page-break-inside: avoid;}
 }
