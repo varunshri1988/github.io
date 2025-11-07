@@ -13,13 +13,19 @@ const navLinks = document.querySelectorAll(".site-nav a");
 
 function updateActiveLink() {
   let current = "";
-  const scrollPos = window.scrollY + 80; // Offset for header height
+  const scrollPos = window.scrollY + window.innerHeight / 2;
 
   sections.forEach(section => {
-    if (scrollPos >= section.offsetTop - 2) { // -2 for tolerance, can remove if unnecessary
+    const sectionTop = section.offsetTop - 180;
+    const sectionHeight = section.clientHeight;
+    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
       current = section.getAttribute("id");
     }
   });
+
+  if (window.scrollY < 150) current = "home";
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5)
+    current = "contact";
 
   navLinks.forEach(link => {
     link.classList.remove("active");
@@ -95,4 +101,3 @@ document.addEventListener("contextmenu", event => {
 // ===============================
 // Ensure viewport meta tag is set in HTML head:
 // <meta name="viewport" content="width=device-width,initial-scale=1" />
-
