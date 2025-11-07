@@ -1,0 +1,171 @@
+:root {
+  --accent: #8a00c4;
+  --muted: #6b6b6b;
+  --max-w: 1200px;
+  --font-family: "Open Sans", sans-serif;
+  --font-size-base: 18px;
+  --font-size-small: 16px;
+  --font-size-large: 22px;
+  --font-size-h2: 28px;
+  --font-size-h1: 46px;
+  --line-height: 1.7;
+  --fw-bold: 700;
+  --fw-semibold: 600;
+}
+
+/* Base */
+html, body {
+  margin: 0;
+  padding: 0;
+  color: #111;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  background: url("./assets/website_background.png") center / cover fixed no-repeat;
+  background-color: #f5e3d0;
+  scroll-behavior: smooth;
+}
+
+/* Header */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.site-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo { height: 42px; }
+.site-nav a {
+  color: #000;
+  text-decoration: none;
+  margin-left: 16px;
+  font-weight: var(--fw-semibold);
+  transition: color 0.3s ease;
+}
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--accent);
+}
+
+/* Sections */
+.section {
+  padding: 120px 20px 80px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.section-inner {
+  max-width: var(--max-w);
+  width: 100%;
+}
+
+/* Home */
+.section-home {
+  text-align: center;
+  align-items: center;
+  padding-top: 80px;   /* ↓ reduced from 140px → moves everything up */
+  min-height: 100vh;
+}
+
+.hero-logo {
+  max-width: 400px;
+  width: 100%;
+  margin-top: -20px;   /* ✅ fine-tune upward position of the logo itself */
+}
+
+.company-name {
+  font-size: var(--font-size-h1);
+  font-weight: var(--fw-bold);
+  margin: 5px 0;
+}
+
+.company-tagline {
+  font-size: var(--font-size-large);
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* Tea */
+.section-tea { padding-top: 60px; }
+.tea-layout { display: grid; grid-template-columns: 40% 60%; gap: 40px; align-items: center; }
+.tea-pack-img { width: 70%; max-width: 420px; }
+.tea-right p { margin-bottom: 10px; } /* Normal spacing */
+.tea-pack-img { width: 70%; max-width: 420px; margin-top: 40px; } /* ✅ Moves image down */
+
+/* About */
+.section-about {
+  padding-top: 120px; /* keep existing spacing */
+}
+
+.Mnrg-logo {
+  width: 60%;
+  max-width: 300px;
+}
+
+/* ✅ Move only the text part upward */
+.about-right {
+  position: relative;
+  top: -40px; /* adjust: -20px (subtle) to -60px (more pronounced) */
+}
+
+/* Shop */
+.section-shop {
+  padding-top: 100px; /* keeps proper spacing from header */
+  text-align: center;
+}
+
+.section-shop .section-inner {
+  margin-top: 100px; /* ✅ pushes the content block downward */
+}
+
+/* FAQ */
+.section-faq { padding-top: 70px; }
+.q-highlight { color: var(--accent); font-weight: var(--fw-bold); }
+
+/* Contact */
+.section-contact {
+  padding-top: 10;           /* remove default section spacing */
+  padding-bottom: 10px;     /* keeps footer close */
+  text-align: left;
+  min-height: auto;
+}
+
+.section-contact .section-inner {
+  position: relative;
+  top: -70px;               /* ✅ moves text up (adjust: -40px to -80px) */
+}
+
+.section-contact a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.section-contact a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 10px 0 15px;     /* tighter footer padding */
+  color: var(--muted);
+  font-size: var(--font-size-small);
+  margin-top: 0;            /* ensures no unwanted gap above footer */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .tea-layout, .about-layout { grid-template-columns: 1fr; text-align: center; }
+  .section { padding: 100px 20px 60px; }
+}
