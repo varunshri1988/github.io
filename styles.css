@@ -112,7 +112,7 @@ html, body {
 .section-home {
   text-align: center;
   align-items: center;
-  padding-top: 120px; /* Ensures hero content starts below header on desktop/tablet */
+  padding-top: 100px; /* Ensures hero content starts below header on desktop/tablet */
   min-height: 100vh;
 }
 @media (max-width: 480px) {
@@ -367,5 +367,6 @@ html, body {
   body { background: white;}
   .section { page-break-inside: avoid;}
 }
+
 
 
